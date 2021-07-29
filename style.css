@@ -7,6 +7,7 @@ body {
     height: 100%;
 }
 
+/* top-nav */ 
 .top-nav {
     display: flex;
     position: fixed;
@@ -47,6 +48,7 @@ body {
     width: 16px;
 }
 
+/* side-nav */
 .side-nav {
     position: fixed;
     top: 0%;
@@ -74,14 +76,28 @@ body {
     background-color: rgb(235, 235, 235);
 }
 
-.side-nav-list .li-container .list-icon {
+.list-icon {
     width: 24px;
     height: 24px;
     padding-right: 10px;
 }
 
-.projects-list { /* only when clicked, then display: block to reveal the contents */
-    display: none;
+.list-icon:hover {
+    cursor: pointer;
+}
+
+#projects {
+    display: flex;
+    justify-content: space-between;
+}
+
+.projects-list-container {
+    list-style: none;
+}
+
+.projects-list {
+    list-style: none;
+    padding-left: 10px;
 }
 
 .content {
@@ -89,14 +105,84 @@ body {
     padding-left: 220px;
 }
 
+/* task-form */
 .task-form {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
+    text-align: center;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(250px, 75vw, 400px);
-    height: clamp(600px, 40vh, 800px);
-    border-radius: 5px;
+    padding: 20px 0px;
+    width: clamp(200px, 75vw, 240px);
+    height: 280px;
+    border-radius: 10px;
     background-color:antiquewhite;
+}
+
+.task-form input[type=text] {
+    width: 85%;
+    border-radius: 5px;
+    border-style: none;
+    border: none;
+    padding: 5px 5px;
+    margin: 10px;
+    outline: none;
+}
+
+.task-form button {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: white;
+}
+
+.task-form button:hover {
+    cursor: pointer;
+}
+
+.blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+/* content task-list */
+.task-list {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.task-list li {
+    display: flex;
+    width: 30%;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.task-list li.fade-out {
+    opacity: 0;
+}
+
+.task-icon {
+    width: 24px;
+    height: 24px;
+    padding-right: 10px;   
+}
+
+.task-list li:hover {
+    cursor: pointer;
+}
+
+.expand-icon { 
+    width: 16px;
+    height: 16px;
+    padding-left: 10px;
+    opacity: 0;
+    transition: 1s;
+}
+
+.task-list li:hover > .expand-icon {
+    opacity: 1;
 }
