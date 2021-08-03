@@ -73,7 +73,7 @@ body {
 
 .side-nav-list .li-container:hover {
     cursor: pointer;
-    background-color: rgb(235, 235, 235);
+    background-image: linear-gradient(to right, rgb(245, 245, 245), rgb(230, 230, 230));
 }
 
 .list-icon {
@@ -114,13 +114,13 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px 0px;
-    width: clamp(200px, 75vw, 240px);
+    width: clamp(240px, 75vw, 260px);
     height: 280px;
     border-radius: 10px;
     background-color:antiquewhite;
 }
 
-.task-form input[type=text] {
+.task-form input[type=text], .task-form input[type=datetime-local] {
     width: 85%;
     border-radius: 5px;
     border-style: none;
@@ -155,14 +155,18 @@ body {
 
 .task-list li {
     display: flex;
-    width: 30%;
     align-items: center;
+    border-radius: 20px;
     opacity: 1;
-    transition: opacity 1s;
+    transition: opacity 0.5s;
 }
 
 .task-list li.fade-out {
     opacity: 0;
+}
+
+.task-list li p {
+    padding-right: 40px;
 }
 
 .task-icon {
@@ -175,14 +179,30 @@ body {
     cursor: pointer;
 }
 
-.expand-icon { 
-    width: 16px;
-    height: 16px;
+.expand-btn { 
+    width: 10px;
+    height: 10px;
     padding-left: 10px;
     opacity: 0;
-    transition: 1s;
+    transition: opacity 1s;
 }
 
-.task-list li:hover > .expand-icon {
+.task-list li:hover > .expand-btn {
     opacity: 1;
+
+}
+
+.expand-btn--active { 
+    opacity: 1;
+}
+
+.expand-btn--active + .expand-content { display: block; }
+
+.expand-content {
+    display: none;
+    overflow: auto;
+
+    padding: 5px 15px;
+    font-family: san-serif;
+    background-color: rgba(250, 250, 250, 0.8)
 }
