@@ -3,7 +3,7 @@ const storage = (function() {
 
     const getData = function() {
         return data;
-    }
+    };
 
     const add = function(task) {
         data.push(task);
@@ -18,7 +18,7 @@ const storage = (function() {
         console.log('updated data: ', data);
         data.splice(index, 1);
         localStorage.setItem("data", JSON.stringify(data));
-    }
+    };
     
     const loadDefault = function() {
         // retrieve
@@ -26,7 +26,7 @@ const storage = (function() {
         // default tab
         const inboxTab = document.querySelector('#inbox');
         inboxTab.click();
-    }
+    };
 
     return {
         getData,

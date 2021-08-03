@@ -1,6 +1,5 @@
 import { createTask, displayTask, handleTask } from "./task.js";
 import storage from "./storage.js";
-import { formatDate } from './date.js';
 
 const taskForm = document.querySelector(".task-form");
 const content = document.querySelector(".content");
@@ -11,7 +10,7 @@ const initForm = function() {
     initFormPopUp();
     initCloseBtn();
     initSubmitBtn();
-}
+};
 
 const initFormPopUp = function() {
     const addBtn = document.querySelector("#add-task");
@@ -26,14 +25,14 @@ const initFormPopUp = function() {
 const initCloseBtn = function() {
     const closeBtn = document.querySelector("#close-form");
     closeBtn.addEventListener("click", closeForm);
-}
+};
 
 const closeForm = function() {
     taskForm.style.display = "None";
     content.classList.remove("blur");
     sideNav.classList.remove("blur");
     topNav.classList.remove("blur");
-}
+};
 
 const initSubmitBtn = function() {
     const submitBtn = document.querySelector("#submit");
@@ -52,6 +51,6 @@ const initSubmitBtn = function() {
     taskForm.addEventListener('submit', function(e) {
         e.preventDefault();
     })
-}
+};
 
 export default initForm

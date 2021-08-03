@@ -12,7 +12,7 @@ const formatDate = function(input) {
     } else {
         return format(date, 'd MMM yyyy h:mm aaa');
     }
-}
+};
 
 const inAWeek = function(inputDate) {
     const currentDate = new Date();
@@ -23,7 +23,7 @@ const inAWeek = function(inputDate) {
     } 
 
     return false;
-} 
+};
 
 const evaluateDay = function(inputDate) {
     const today = new Date();
@@ -51,7 +51,7 @@ const evaluateDay = function(inputDate) {
         case 6:
             return base + 'Saturday ';
     }
-}
+};
 
 export { formatDate, inAWeek }
 

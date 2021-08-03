@@ -15,7 +15,7 @@ const addToProjects = function(category) {
         newCategory.addEventListener('click', displayCategory.bind(null, category));
         projectsList.appendChild(newCategory);
     } 
-}
+};
 
 const removeProject = function(category) {
     // if there are no tasks of this category
@@ -34,6 +34,6 @@ const displayCategory = function(category) {
     const data = storage.getData();
     const filteredTasks = data.filter(task => task.category === category);
     filteredTasks.forEach(task => displayTask(task));
-}
+};
 
 export { addToProjects, displayCategory, removeProject }

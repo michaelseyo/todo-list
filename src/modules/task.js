@@ -16,7 +16,7 @@ function createTask(title, category, description, due, done) { // have a unique 
         done,
         id,
     }
-};
+}
 
 const displayTask = function(task) {
     const taskContainer = document.createElement("li");
@@ -28,7 +28,7 @@ const displayTask = function(task) {
     createTaskContent(task, taskContainer);
   
     taskList.appendChild(taskContainer);
-}
+};
 
 const createTaskIcon = function(task, taskContainer) {
     const taskIcon = new Image();
@@ -37,20 +37,20 @@ const createTaskIcon = function(task, taskContainer) {
     taskIcon.id = 'notDone';
     taskIcon.addEventListener("click", createDoneBtn.bind(null, task, taskIcon, taskContainer));
     taskContainer.appendChild(taskIcon);
-}
+};
 
 const createDoneBtn = function(task, taskIcon, taskContainer) {
     taskIcon.src = './images/done.png';
     storage.remove(task);
     fadeAndRemove(task, taskContainer);
-}
+};
 
 const createTaskContent = function(task, taskContainer) {
     const content = document.createElement('div');
     content.classList.add('expand-content');
     content.textContent = `Details: ${task.description}`;
     taskContainer.appendChild(content);
-}
+};
 
 const createExpandBtn = function(taskContainer) {
     const expandBtn = document.createElement('input');
@@ -62,20 +62,20 @@ const createExpandBtn = function(taskContainer) {
         expandBtn.classList.toggle('expand-btn--active');    
     });
     taskContainer.appendChild(expandBtn);
-}
+};
 
 const createTaskTitle = function(task, taskContainer) {
     const para = document.createElement('p');
     para.textContent = task.title;
     para.id = 'task-title';
     taskContainer.appendChild(para);
-}
+};
 
 const createDueDate = function(task, taskContainer) {
     const date = document.createElement('p');
     date.textContent = formatDate(task.due);
     taskContainer.appendChild(date);
-}
+};
 
 const fadeAndRemove = function(task, taskContainer) {
     taskContainer.classList.add('fade-out');
@@ -83,12 +83,12 @@ const fadeAndRemove = function(task, taskContainer) {
         taskList.removeChild(taskContainer);
         removeProject(task.category);
     });
-}
+};
 
 const handleTask = function(task) {
     displayTask(task);
     addToProjects(task.category);
-}
+};
 
 const removeAllDisplayedChild = function() {
     const currentTaskList = document.querySelector('.task-list');
@@ -96,6 +96,6 @@ const removeAllDisplayedChild = function() {
     while (currentTaskList.lastElementChild) {
         currentTaskList.removeChild(currentTaskList.lastElementChild);
     }
-}
+};
 
 export { createTask, displayTask, handleTask, removeAllDisplayedChild };
