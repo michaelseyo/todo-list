@@ -20,7 +20,6 @@ const storage = (function() {
         localStorage.setItem("data", JSON.stringify(data));
     }
     
-    // do this document.body.onload
     const loadDefault = function() {
         // retrieve
         data = JSON.parse(localStorage.getItem("data"));

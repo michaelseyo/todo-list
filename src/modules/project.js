@@ -3,7 +3,6 @@ import { displayTask, removeAllDisplayedChild } from './task.js';
 
 const projectsList = document.querySelector('.projects-list');
 
-// addToProjects must be run during document.body.onload as well because we retrieve localStorage data to create
 const addToProjects = function(category) {
     const foundCategory = projectsList.querySelector(`#${category}`);
     // check if there exist a ul of this category 

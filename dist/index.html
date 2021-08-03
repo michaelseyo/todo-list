@@ -25,9 +25,9 @@
                     <img class='list-icon' src="images/today-icon.png" alt='today-icon'>
                     Today
                 </li>
-                <li id='next-week' class="li-container">
-                    <img class='list-icon' src='images/next-week-icon.png' alt='next-week-icon'>
-                    Next Week
+                <li id='next-7days' class="li-container">
+                    <img class='list-icon' src='images/next-week-icon.png' alt='next-7days-icon'>
+                    Next 7 days
                 </li>
                 <br>
                 <li id='projects'> Projects <img id='add-task' class='list-icon' src="images/add-icon.png" alt='add-icon'></li>
@@ -54,7 +54,7 @@
             <label for='description'>Description:</label>
             <input type='text' id='description' required><br>
             <label for='due' id='due'>Due:</label>
-            <input type='text' id=due' required>
+            <input type='datetime-local' id='due' required>
             <button type='button' id='submit'>Submit</button>
             <button type='button' id='close-form'>Close</button>
         </form>

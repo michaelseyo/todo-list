@@ -1,6 +1,6 @@
 import { createTask, displayTask, handleTask } from "./task.js";
-import { addToProjects } from './project.js';
 import storage from "./storage.js";
+import { formatDate } from './date.js';
 
 const taskForm = document.querySelector(".task-form");
 const content = document.querySelector(".content");
@@ -38,12 +38,11 @@ const closeForm = function() {
 const initSubmitBtn = function() {
     const submitBtn = document.querySelector("#submit");
     submitBtn.addEventListener("click", function() {
-        const title = document.querySelector("#title").value;
-        const category = document.querySelector("#category").value;
-        const description = document.querySelector("#description").value;
-        const due = document.querySelector("#due").value;
+        const title = document.querySelector("input#title").value;
+        const category = document.querySelector("input#category").value;
+        const description = document.querySelector("input#description").value;
+        const due = document.querySelector("input#due").value;
         
-        // create the new task object, add it into localStorage
         const task = createTask(title, category, description, due, false);
         console.log(task);
         handleTask(task);
@@ -56,9 +55,3 @@ const initSubmitBtn = function() {
 }
 
 export default initForm
-
-// try and figure out how the date thing works (to implement within our task form);
-// delay effect for our check-off? where the li element slowly fades
-// display a due-date for our tasks 
-// find a way to organize your modules 
-// indicate a number to show the num of tasks 
