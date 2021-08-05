@@ -7,7 +7,10 @@
     </head>
     <body>
         <nav class="top-nav">
-            <img src="" id='logo' alt="logo">
+            <div class='logo-container'>
+                <img src="./images/to-do-list.png" id='logo' alt="logo">
+                <header>Todo-list</header>
+            </div>
             <form class='search-container'>
                 <img id='search-icon' src="./images/search-icon.png">
                 <input id='search-bar' type="text" placeholder="Search">
@@ -40,7 +43,7 @@
         </nav>
 
         <main class='content'>
-            <header>What's due?</header>
+            <h1>What's due?</h1>
             <ul class='task-list'>
 
             </ul>
@@ -51,8 +54,8 @@
             <input type='text' id='title' required><br>
             <label for='category'>Category:</label>
             <input type='text' id='category' required><br>
-            <label for='description'>Description:</label>
-            <input type='text' id='description' required><br>
+            <label for='description'>Add note:</label>
+            <input type='text' id='note' required><br>
             <label for='due' id='due'>Due:</label>
             <input type='datetime-local' id='due' required>
             <button type='button' id='submit'>Submit</button>
