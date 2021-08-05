@@ -5,6 +5,10 @@ const storage = (function() {
         return data;
     };
 
+    const taskIsStored = function(currentTask) {
+        return data.findIndex(task => task.id === currentTask.id);
+    }
+
     const add = function(task) {
         data.push(task);
         localStorage.setItem("data", JSON.stringify(data));
@@ -30,6 +34,7 @@ const storage = (function() {
 
     return {
         getData,
+        taskIsStored,
         add,
         remove,
         loadDefault,

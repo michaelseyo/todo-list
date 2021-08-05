@@ -39,10 +39,11 @@ const initSubmitBtn = function() {
     submitBtn.addEventListener("click", function() {
         const title = document.querySelector("input#title").value;
         const category = document.querySelector("input#category").value;
-        const description = document.querySelector("input#description").value;
+        const note = document.querySelector("input#note").value;
         const due = document.querySelector("input#due").value;
         
-        const task = createTask(title, category, description, due, false);
+        // need a way to check that we came from the edit button, then don't create new task just edit
+        const task = createTask(title, category, note, due, false); // we want them to have the same id e.g 3
         console.log(task);
         handleTask(task);
         storage.add(task);
@@ -53,4 +54,16 @@ const initSubmitBtn = function() {
     })
 };
 
-export default initForm
+const loadFormFromEdit = function(task) {
+    const addBtn = document.querySelector('#add-task');
+
+    document.querySelector("input#title").value = task.title;
+    document.querySelector("input#category").value = task.category;
+    document.querySelector("input#note").value = task.note;
+    document.querySelector("input#due").value = task.due;
+    addBtn.click();
+}
+
+export { initForm, loadFormFromEdit }
+
+// work on the edit logic, where we do not create a new task, but edit the pre-exising task
