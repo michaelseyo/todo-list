@@ -89,5 +89,3 @@ const edit = (function() {
 })();
 
 export default edit;
-
-// when we refresh the page and create a new task, the id will start with 1, even tho 1 exists already

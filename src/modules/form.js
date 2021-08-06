@@ -1,4 +1,4 @@
-import { Task, handleTask } from "./task.js";
+import { createTask, handleTask } from "./task.js";
 import storage from "./storage.js";
 import edit from "./edit.js";
 
@@ -75,5 +75,3 @@ const loadFormFromEdit = function(task, liContainer) {
 }
 
 export { initForm, loadFormFromEdit }
-
-// work on the edit logic, where we do not create a new task, but edit the pre-exising task
