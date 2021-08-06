@@ -97,6 +97,10 @@ h1 {
     background-image: linear-gradient(to right, rgb(245, 245, 245), rgb(230, 230, 230));
 }
 
+.li-container--active {
+    background-image: linear-gradient(to right, rgb(245, 245, 245), rgb(230, 230, 230));
+}
+
 .list-icon {
     width: 24px;
     height: 24px;
@@ -138,7 +142,7 @@ h1 {
     width: clamp(240px, 75vw, 260px);
     height: 280px;
     border-radius: 10px;
-    background-color:antiquewhite;
+    background-color:rgb(241, 230, 213);
 }
 
 .task-form input[type=text], .task-form input[type=datetime-local] {
@@ -181,7 +185,7 @@ h1 {
     border-radius: 20px;
     padding: 10px;
     opacity: 1;
-    transition: opacity 0.5s;
+    transition: opacity 1s;
 }
 
 .task-list li.fade-out {
@@ -192,7 +196,7 @@ h1 {
     margin: 0;
 }
 
-.task-list .inner-task-container {
+.task-list .task-container {
     display: flex;
     align-items: center;
 }
@@ -201,9 +205,12 @@ h1 {
     margin-right: 10px;
 }
 
+.task-list #task-title {
+    font-size: 18px;
+}
+
 .task-list #task-category {
-    padding-top: 3px;
-    padding-left: 5px;
+    padding-left: 2px;
     font-size: 14px;
 }
 
@@ -211,10 +218,10 @@ h1 {
     width: 24px;
     height: 24px;
     padding-right: 10px;   
-    padding-bottom: 20px;
+    padding-bottom: 16px;
 }
 
-.task-list .inner-task-container:hover {
+.task-list .task-container:hover {
     cursor: pointer;
 }
 
@@ -226,7 +233,7 @@ h1 {
     transition: opacity 1s;
 }
 
-.task-list .inner-task-container:hover > .expand-btn {
+.task-list .task-container:hover > .expand-btn {
     opacity: 1;
 }
 
@@ -246,7 +253,7 @@ h1 {
 }
 
 /* info container (task due-date and nav btns) */
-.info-container {
+.right-container {
     display: flex;
     align-items: center;
     margin-right: 30px;
