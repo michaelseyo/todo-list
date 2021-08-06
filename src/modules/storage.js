@@ -5,6 +5,17 @@ const storage = (function() {
         return data;
     };
 
+    const storeLatestID = function(id) {
+        localStorage.setItem("id", id);
+    }
+
+    const getLatestID = function() {
+        if (localStorage.getItem("id") === null) {
+            return 0;
+        }
+        return parseInt(localStorage.getItem("id"));
+    }
+
     const update = function() {
         localStorage.setItem("data", JSON.stringify(data));
     }
@@ -35,6 +46,8 @@ const storage = (function() {
 
     return {
         getData,
+        storeLatestID,
+        getLatestID,
         add,
         update,
         remove,

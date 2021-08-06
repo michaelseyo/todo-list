@@ -3,18 +3,21 @@ import { formatDate } from './date.js';
 import { loadFormFromEdit } from './form.js';
 import storage from './storage.js'
 
-let id = 0;
+let id = storage.getLatestID();
 
 const taskList = document.querySelector('.task-list');
 
 // have a unique id to identify/delete
-function Task(title, category, note, due, done) { 
-    this.title = title;
-    this.category = category;
-    this.note = note;
-    this.due = due;
-    this.done = done;
-    this.id = id++;
+function createTask(title, category, note, due, done) { 
+    storage.storeLatestID(++id);
+    return {
+        title,
+        category,
+        note,
+        due,
+        done,
+        id,
+    }
 }
 
 const displayTask = function(task) {
@@ -143,4 +146,4 @@ const removeAllDisplayedChild = function() {
     }
 };
 
-export { Task, displayTask, handleTask, removeAllDisplayedChild };
+export { createTask, displayTask, handleTask, removeAllDisplayedChild };
