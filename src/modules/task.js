@@ -7,56 +7,61 @@ let id = 0;
 
 const taskList = document.querySelector('.task-list');
 
-function createTask(title, category, note, due, done) { // have a unique id to identify/delete
-    id++;
-    return {
-        title,
-        category,
-        note,
-        due,
-        done,
-        id,
-    }
+// have a unique id to identify/delete
+function Task(title, category, note, due, done) { 
+    this.title = title;
+    this.category = category;
+    this.note = note;
+    this.due = due;
+    this.done = done;
+    this.id = id++;
 }
 
 const displayTask = function(task) {
-    const taskContainer = document.createElement("li");
-    const innerTaskContainer = document.createElement("div");
-    innerTaskContainer.classList.add('inner-task-container');
+    const liContainer = document.createElement("li");
+    liContainer.id = task.category;
+
+    const taskContainer = document.createElement("div");
+    taskContainer.classList.add('task-container');
     
-    const infoContainer = document.createElement("div");
-    infoContainer.classList.add('info-container')
+    const rightContainer = document.createElement("div");
+    rightContainer.classList.add('right-container')
 
-    taskContainer.id = task.category;
-    createTaskIcon(task, innerTaskContainer);
-    createTaskTitle(task, innerTaskContainer);
-    createExpandBtn(innerTaskContainer);
-    createTaskNote(task, innerTaskContainer);
+    createTaskContainer(task, taskContainer, liContainer);
+    createRightContainer(task, rightContainer, liContainer);
 
-    createDueDate(task, infoContainer);
-    createEditBtn(task, infoContainer);
-  
-    taskContainer.appendChild(innerTaskContainer);
-    taskContainer.appendChild(infoContainer);
-    taskList.appendChild(taskContainer);
+    liContainer.appendChild(taskContainer);
+    liContainer.appendChild(rightContainer);
+    taskList.appendChild(liContainer);
 };
 
-const createTaskIcon = function(task, innerTaskContainer, taskContainer) {
+// Task container
+const createTaskContainer = function(task, taskContainer, liContainer) {
+    taskIcon(task, taskContainer, liContainer);
+    taskTitle(task, taskContainer);
+    
+    if (task.note !== '') {
+        createExpandBtn(taskContainer);
+        taskNote(task, taskContainer);
+    }
+}
+
+const taskIcon = function(task, taskContainer, liContainer) {
     const taskIcon = new Image();
     taskIcon.classList.add('task-icon');
     taskIcon.src = './images/notDone.png';
     taskIcon.id = 'notDone';
-    taskIcon.addEventListener("click", createDoneBtn.bind(null, task, taskIcon, taskContainer));
-    innerTaskContainer.appendChild(taskIcon);
+    taskIcon.addEventListener("click", createDoneBtn.bind(null, task, taskIcon, liContainer));
+    taskContainer.appendChild(taskIcon);
 };
 
-const createDoneBtn = function(task, taskIcon, taskContainer) {
+const createDoneBtn = function(task, taskIcon, liContainer) {
     taskIcon.src = './images/done.png';
     storage.remove(task);
-    fadeAndRemove(task, taskContainer);
+    fadeAndRemove(task, liContainer);
 };
 
-const createTaskTitle = function(task, innerTaskContainer) {
+const taskTitle = function(task, taskContainer) {
     const container = document.createElement('div');
     container.classList.add('task');
     const title = document.createElement('p');
@@ -69,10 +74,10 @@ const createTaskTitle = function(task, innerTaskContainer) {
 
     container.appendChild(title);
     container.appendChild(category);
-    innerTaskContainer.appendChild(container);
+    taskContainer.appendChild(container);
 };
 
-const createExpandBtn = function(innerTaskContainer) {
+const createExpandBtn = function(taskContainer) {
     const expandBtn = document.createElement('input');
     expandBtn.type = 'image';
     expandBtn.src = './images/expand-icon.png';
@@ -81,45 +86,55 @@ const createExpandBtn = function(innerTaskContainer) {
     expandBtn.addEventListener('click', function() {
         expandBtn.classList.toggle('expand-btn--active');    
     });
-    innerTaskContainer.appendChild(expandBtn);
+    taskContainer.appendChild(expandBtn);
 };
 
-const createTaskNote = function(task, innerTaskContainer) {
+const taskNote = function(task, taskContainer) {
     const note = document.createElement('div');
     note.classList.add('expand-note');
     note.textContent = `${task.note}`;
-    innerTaskContainer.appendChild(note);
+    taskContainer.appendChild(note);
 };
 
-const createDueDate = function(task, infoContainer) {
+// Right container
+const createRightContainer = function(task, rightContainer, liContainer) {
+    createDueDate(task, rightContainer);
+    createEditBtn(task, rightContainer, liContainer);
+}
+
+const createDueDate = function(task, rightContainer) {
     const date = document.createElement('p');
+    date.id = 'task-due';
     date.textContent = formatDate(task.due);
-    infoContainer.appendChild(date);
+    rightContainer.appendChild(date);
 };
 
-const createEditBtn = function(task, infoContainer) {
+const createEditBtn = function(task, rightContainer, liContainer) {
     const editBtn = document.createElement('input');
     editBtn.type = 'image';
     editBtn.src = './images/edit-icon.png';
     editBtn.classList.add('edit-btn');
     editBtn.id = 'edit';
-    editBtn.addEventListener('click', loadFormFromEdit.bind(null, task));
-    infoContainer.appendChild(editBtn);
+    editBtn.addEventListener('click', loadFormFromEdit.bind(null, task, liContainer));
+    rightContainer.appendChild(editBtn);
 }
 
-const fadeAndRemove = function(task, taskContainer) {
-    taskContainer.classList.add('fade-out');
-    taskContainer.addEventListener('transitionend', function() {
-        taskList.removeChild(taskContainer);
+// effects 
+const fadeAndRemove = function(task, liContainer) {
+    liContainer.classList.add('fade-out');
+    liContainer.addEventListener('transitionend', function() {
+        taskList.removeChild(liContainer);
         removeProject(task.category);
     });
 };
 
+// task handler 
 const handleTask = function(task) {
     displayTask(task);
     addToProjects(task.category);
 };
 
+// DOM 
 const removeAllDisplayedChild = function() {
     const currentTaskList = document.querySelector('.task-list');
 
@@ -128,14 +143,4 @@ const removeAllDisplayedChild = function() {
     }
 };
 
-export { createTask, displayTask, handleTask, removeAllDisplayedChild };
-
-
-// want to create a feature where we can edit the tasks after created
-// and then also make sure that is updated on the storage side 
-// have an edit-icon at the details part
-// opens up the task-form once again, so make task-form such that 
-// if a task already exists, then we edit the details of it?
-// we can make-use of the unique id to know if it exists already
-
-// clean up the displaytask code
+export { Task, displayTask, handleTask, removeAllDisplayedChild };

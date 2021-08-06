@@ -5,13 +5,13 @@ const storage = (function() {
         return data;
     };
 
-    const taskIsStored = function(currentTask) {
-        return data.findIndex(task => task.id === currentTask.id);
+    const update = function() {
+        localStorage.setItem("data", JSON.stringify(data));
     }
 
     const add = function(task) {
         data.push(task);
-        localStorage.setItem("data", JSON.stringify(data));
+        storage.update();
         console.log(data);
         console.log("In localStorage:", localStorage.getItem("data"));
     };
@@ -21,12 +21,13 @@ const storage = (function() {
         console.log('index found: ', index);
         console.log('updated data: ', data);
         data.splice(index, 1);
-        localStorage.setItem("data", JSON.stringify(data));
+        storage.update();
     };
     
     const loadDefault = function() {
         // retrieve
         data = JSON.parse(localStorage.getItem("data"));
+        console.log('Onload storage: ', data);
         // default tab
         const inboxTab = document.querySelector('#inbox');
         inboxTab.click();
@@ -34,8 +35,8 @@ const storage = (function() {
 
     return {
         getData,
-        taskIsStored,
         add,
+        update,
         remove,
         loadDefault,
     }

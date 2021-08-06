@@ -31,6 +31,9 @@ const removeProject = function(category) {
 // onclick function, display the tasks that belong to that category
 const displayCategory = function(category) {
     removeAllDisplayedChild();
+
+    const header = document.querySelector('h1');
+    header.textContent = category;
     const data = storage.getData();
     const filteredTasks = data.filter(task => task.category === category);
     filteredTasks.forEach(task => displayTask(task));

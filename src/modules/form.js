@@ -1,5 +1,6 @@
-import { createTask, displayTask, handleTask } from "./task.js";
+import { Task, handleTask } from "./task.js";
 import storage from "./storage.js";
+import edit from "./edit.js";
 
 const taskForm = document.querySelector(".task-form");
 const content = document.querySelector(".content");
@@ -9,7 +10,7 @@ const topNav = document.querySelector(".top-nav");
 const initForm = function() {
     initFormPopUp();
     initCloseBtn();
-    initSubmitBtn();
+    initSaveBtn();
 };
 
 const initFormPopUp = function() {
@@ -34,19 +35,22 @@ const closeForm = function() {
     topNav.classList.remove("blur");
 };
 
-const initSubmitBtn = function() {
-    const submitBtn = document.querySelector("#submit");
-    submitBtn.addEventListener("click", function() {
+const initSaveBtn = function() {
+    const saveBtn = document.querySelector("#save");
+    saveBtn.addEventListener("click", function(e) {
         const title = document.querySelector("input#title").value;
         const category = document.querySelector("input#category").value;
         const note = document.querySelector("input#note").value;
         const due = document.querySelector("input#due").value;
         
-        // need a way to check that we came from the edit button, then don't create new task just edit
-        const task = createTask(title, category, note, due, false); // we want them to have the same id e.g 3
-        console.log(task);
-        handleTask(task);
-        storage.add(task);
+        if (edit.getState() === true) {
+            edit.updateTask(title, category, note, due);
+        } else {
+            const newTask = new Task(title, category, note, due, false); 
+            console.log(newTask);
+            handleTask(newTask);
+            storage.add(newTask);
+        }
         closeForm();
     });
     taskForm.addEventListener('submit', function(e) {
@@ -54,13 +58,19 @@ const initSubmitBtn = function() {
     })
 };
 
-const loadFormFromEdit = function(task) {
-    const addBtn = document.querySelector('#add-task');
+const loadFormFromEdit = function(task, liContainer) {
+    // toggles on 
+    edit.toggleOn();
+    const addBtn = document.querySelector('#add-task'); 
 
+    // pre-fill previous details
     document.querySelector("input#title").value = task.title;
     document.querySelector("input#category").value = task.category;
     document.querySelector("input#note").value = task.note;
     document.querySelector("input#due").value = task.due;
+
+    edit.storeEditingTask(task, liContainer);
+    // open the form
     addBtn.click();
 }
 

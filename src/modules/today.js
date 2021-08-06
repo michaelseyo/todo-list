@@ -11,6 +11,9 @@ const filterTasks = function() {
 const displayToday = function() {
     const filtered = filterTasks();
     removeAllDisplayedChild();
+
+    const header = document.querySelector('h1');
+    header.textContent = 'Today';
     filtered.forEach(task => handleTask(task));
 };
 

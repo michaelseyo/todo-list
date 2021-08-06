@@ -11,6 +11,9 @@ const filterTasks = function() {
 const displayNext7Days = function() {
     const filtered = filterTasks();
     removeAllDisplayedChild();
+
+    const header = document.querySelector('h1');
+    header.textContent = 'Next 7 days';
     filtered.forEach(task => handleTask(task));
 };
 
