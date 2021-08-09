@@ -34,6 +34,9 @@ const storage = (function() {
     const loadDefault = function() {
         // retrieve
         data = JSON.parse(localStorage.getItem("data"));
+        if (data === null) {
+            return;
+        }
         // default tab
         const inboxTab = document.querySelector('#inbox');
         inboxTab.click();
