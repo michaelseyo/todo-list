@@ -1,0 +1,25 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "Made with HTML, CSS, Javascript and localStorage for storing data. Put down tasks that you have to complete so that you won't forget them! Tasks are also organisable into diferent categories for ease of access.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelseyo/todo-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelseyo/todo-list/issues"
+  },
+  "homepage": "https://github.com/michaelseyo/todo-list#readme",
+  "dependencies": {
+    "date-fns": "^2.23.0",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2"
+  }
+}

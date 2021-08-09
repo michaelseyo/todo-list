@@ -1,0 +1,267 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    width: 24px;
+    height: 24px;
+    padding-right: 10px;
+}
+
+header {
+    color: #517480;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+/* top-nav */ 
+.top-nav {
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    background-color:rgb(241, 230, 213);
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    z-index: 1;
+}
+
+#logo {
+    margin-left: 20px;
+}
+
+.search-container {
+    display: flex;
+    position: relative;
+    margin-right: 20px;
+}
+
+#search-bar {
+    outline: none;
+    border-style: none;
+    width: 100%;
+    padding: 5px 40px;
+    border-radius: 10px;
+}
+
+#search-icon {
+    position: absolute;
+    left: 12px;
+    top: 5px;
+    height: 16px;
+    width: 16px;
+}
+
+/* side-nav */
+.side-nav {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    background-color: rgb(245, 245, 245);
+    height: 100%;
+    width: 200px;
+    padding-top: 50px;
+}
+
+.side-nav-list {
+    font-size: 18px;
+}
+
+.side-nav-list .li-container {
+    width: 100%;
+    list-style-image: none;
+    display: flex;
+    align-items: center;
+    padding: 5px 0px;
+}
+
+.side-nav-list .li-container:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to right, rgb(245, 245, 245), rgb(230, 230, 230));
+}
+
+.li-container--active {
+    background-image: linear-gradient(to right, rgb(245, 245, 245), rgb(230, 230, 230));
+}
+
+.list-icon {
+    width: 24px;
+    height: 24px;
+    padding-right: 10px;
+}
+
+.list-icon:hover {
+    cursor: pointer;
+}
+
+#projects {
+    display: flex;
+    justify-content: space-between;
+}
+
+.projects-list-container {
+    list-style: none;
+}
+
+.projects-list {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.content {
+    padding-top: 60px;
+    padding-left: 220px;
+}
+
+/* task-form */
+.task-form {
+    display: none;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 0px;
+    width: clamp(240px, 75vw, 260px);
+    height: 280px;
+    border-radius: 10px;
+    background-color:rgb(241, 230, 213);
+}
+
+.task-form input[type=text], .task-form input[type=datetime-local] {
+    width: 85%;
+    border-radius: 5px;
+    border-style: none;
+    border: none;
+    padding: 5px 5px;
+    margin: 10px;
+    outline: none;
+}
+
+.task-form button {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: white;
+}
+
+.task-form button:hover {
+    cursor: pointer;
+}
+
+.blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+/* content task-list */
+.task-list {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.task-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 10px;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.task-list li.fade-out {
+    opacity: 0;
+}
+
+.task-list li p {
+    margin: 0;
+}
+
+.task-list .task-container {
+    display: flex;
+    align-items: center;
+}
+
+.task-list .task {
+    margin-right: 10px;
+}
+
+.task-list #task-title {
+    font-size: 18px;
+}
+
+.task-list #task-category {
+    padding-left: 2px;
+    font-size: 14px;
+}
+
+.task-icon {
+    width: 24px;
+    height: 24px;
+    padding-right: 10px;   
+    padding-bottom: 16px;
+}
+
+.task-list .task-container:hover {
+    cursor: pointer;
+}
+
+.expand-btn { 
+    width: 12px;
+    height: 12px;
+    padding-left: 10px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.task-list .task-container:hover > .expand-btn {
+    opacity: 1;
+}
+
+.expand-btn--active { 
+    opacity: 1;
+}
+
+.expand-btn--active + .expand-note { display: block }
+
+.expand-note {
+    display: none;
+    overflow: auto;
+
+    padding: 5px 15px;
+    font-family: san-serif;
+    font-size: 14px;
+}
+
+/* info container (task due-date and nav btns) */
+.right-container {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.edit-btn {
+    width: 12px;
+    height: 12px;
+    padding-left: 10px;
+}
+
