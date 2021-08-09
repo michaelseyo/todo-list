@@ -47,8 +47,6 @@ const edit = (function() {
 
         // update the storage 
         storage.update();
-        console.log(task);
-        console.log(storage.getData());
 
         // update display
         const container = edit.getContainer();

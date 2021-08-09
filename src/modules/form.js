@@ -47,7 +47,6 @@ const initSaveBtn = function() {
             edit.updateTask(title, category, note, due);
         } else {
             const newTask = createTask(title, category, note, due, false); 
-            console.log(newTask);
             handleTask(newTask);
             storage.add(newTask);
         }

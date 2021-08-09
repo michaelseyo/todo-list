@@ -21,7 +21,7 @@ const removeProject = function(category) {
     // if there are no tasks of this category
     const currentData = storage.getData();
     const foundTask = currentData.find(task => task.category === category);
-    console.log(foundTask);
+
     if (foundTask === undefined) {
         const foundCategory = projectsList.querySelector(`#${category}`);
         projectsList.removeChild(foundCategory);

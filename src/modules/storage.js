@@ -10,7 +10,7 @@ const storage = (function() {
     }
 
     const getLatestID = function() {
-        if (localStorage.getItem("id") === null) {
+        if (localStorage.getItem("id") === null || localStorage.getItem("id") === []) {
             return 0;
         }
         return parseInt(localStorage.getItem("id"));
@@ -23,14 +23,10 @@ const storage = (function() {
     const add = function(task) {
         data.push(task);
         storage.update();
-        console.log(data);
-        console.log("In localStorage:", localStorage.getItem("data"));
     };
     
     const remove = function(task) {
         const index = data.findIndex(currentTask => currentTask.id === task.id);
-        console.log('index found: ', index);
-        console.log('updated data: ', data);
         data.splice(index, 1);
         storage.update();
     };
@@ -38,7 +34,6 @@ const storage = (function() {
     const loadDefault = function() {
         // retrieve
         data = JSON.parse(localStorage.getItem("data"));
-        console.log('Onload storage: ', data);
         // default tab
         const inboxTab = document.querySelector('#inbox');
         inboxTab.click();

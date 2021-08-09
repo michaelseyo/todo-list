@@ -7,7 +7,7 @@ let id = storage.getLatestID();
 
 const taskList = document.querySelector('.task-list');
 
-// have a unique id to identify/delete
+// unique id to identify/delete
 function createTask(title, category, note, due, done) { 
     storage.storeLatestID(++id);
     return {
@@ -137,7 +137,7 @@ const handleTask = function(task) {
     addToProjects(task.category);
 };
 
-// DOM 
+// remove display DOM
 const removeAllDisplayedChild = function() {
     const currentTaskList = document.querySelector('.task-list');
 
