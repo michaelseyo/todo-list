@@ -1,5 +1,5 @@
 const storage = (function() {
-    let data = [];
+    let data;
 
     const getData = function() {
         return data;
@@ -35,7 +35,7 @@ const storage = (function() {
         // retrieve
         data = JSON.parse(localStorage.getItem("data"));
         if (data === null) {
-            return;
+            data = [];
         }
         // default tab
         const inboxTab = document.querySelector('#inbox');
